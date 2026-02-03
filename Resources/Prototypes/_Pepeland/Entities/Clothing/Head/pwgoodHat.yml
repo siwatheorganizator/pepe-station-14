@@ -1,0 +1,18 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatPwgoodHat
+  name: шляпа Пугода
+  description: От нее веет величием.
+  components:
+  - type: Sprite
+    sprite: _Pepeland/Clothing/Head/Hats/pwgoodHat.rsi
+  - type: Clothing
+    sprite: _Pepeland/Clothing/Head/Hats/pwgoodHat.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
