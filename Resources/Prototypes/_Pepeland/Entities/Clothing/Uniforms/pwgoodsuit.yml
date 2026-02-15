@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitPwgood
+  name: костюм Пугода
+  description: Черный костюм для фурри фембоев.
+  components:
+  - type: Sprite
+    sprite: _Pepeland/Clothing/Uniforms/Jumpsuit/pwgood.rsi
+  - type: Clothing
+    sprite: _Pepeland/Clothing/Uniforms/Jumpsuit/pwgood.rsi
