@@ -5,9 +5,9 @@
   description: От нее веет величием.
   components:
   - type: Sprite
-    sprite: _Pepeland/Clothing/Head/Hats/pwgoodHat.rsi
+    sprite: _CIN/Clothing/Head/Hats/pwgoodHat.rsi
   - type: Clothing
-    sprite: _Pepeland/Clothing/Head/Hats/pwgoodHat.rsi
+    sprite: _CIN/Clothing/Head/Hats/pwgoodHat.rsi
   - type: Tag
     tags:
     - PetWearable

@@ -1,0 +1,18 @@
+- type: gameMap
+  id: WardenHomeRegion
+  mapName: 'Warden Home Region'
+  mapPath: /Maps/_CIN/wardenHomeRegion.yml
+  minPlayers: 0
+  maxPlayers: 100
+  stations:
+    WardenHomeRegion:
+      stationProto: StandardNanotrasenStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Warden Home Region {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Passenger: [ -1, -1 ]

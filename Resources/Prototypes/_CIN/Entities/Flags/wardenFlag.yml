@@ -1,0 +1,21 @@
+- type: entity
+  parent: BaseFlag
+  id: FHWardenFlag
+  name: флаг Варденов
+  description: Пахнет монархично. Смерть Колонистам!
+  components:
+  - type: Sprite
+    sprite: _CIN/Objects/Misc/Flags/FHWarden_flag.rsi
+    state: warden_flag
+
+- type: entity
+  parent: BaseItem
+  id: FHWardenHandyFlag
+  name: Nanotrasen handheld flag
+  description: "Слава Каовии! Погоди, они реально сделали маленькие флажки?"
+  components:
+  - type: Sprite
+    sprite: _CIN/Objects/Misc/Flags/FHWarden_handy_flag.rsi
+    state: icon
+  - type: Item
+    sprite: _CIN/Objects/Misc/Flags/FHWarden_handy_flag.rsi

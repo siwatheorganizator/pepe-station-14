@@ -1,6 +1,7 @@
 - type: gameMapPool
   id: DefaultMapPool
   maps:
+  - WardenHomeRegion # CIN
   - Bagel
   - Box
   - Elkridge
