@@ -11,7 +11,7 @@
 - type: entity
   parent: BaseItem
   id: FHWardenHandyFlag
-  name: Nanotrasen handheld flag
+  name: маленький флажок Варденов
   description: "Слава Каовии! Погоди, они реально сделали маленькие флажки?"
   components:
   - type: Sprite

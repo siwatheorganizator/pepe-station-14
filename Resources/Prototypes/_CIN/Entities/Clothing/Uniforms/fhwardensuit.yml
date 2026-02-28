@@ -1,0 +1,21 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitWHWarden
+  name: пехотная униформа
+  description: Солдатская форма Варденов.
+  components:
+  - type: Sprite
+    sprite: _CIN/Clothing/Uniforms/Jumpsuit/fhwarden.rsi
+  - type: Clothing
+    sprite: _CIN/Clothing/Uniforms/Jumpsuit/fhwarden.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitWHWardenOfficer
+  name: офицерская регалия
+  description: Офицерская форма Варденов.
+  components:
+  - type: Sprite
+    sprite: _CIN/Clothing/Uniforms/Jumpsuit/fhwardenofficer.rsi
+  - type: Clothing
+    sprite: _CIN/Clothing/Uniforms/Jumpsuit/fhwardenofficer.rsi
