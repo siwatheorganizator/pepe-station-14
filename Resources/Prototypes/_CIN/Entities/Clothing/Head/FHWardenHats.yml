@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatPwgoodHat
+  name: офицерская фуражка
+  description: Офицерский головной убор Варденов.
+  components:
+  - type: Sprite
+    sprite: _CIN/Clothing/Head/Helmets/fhwardenofficerhat.rsi
+  - type: Clothing
+    sprite: _CIN/Clothing/Head/Helmets/fhwardenofficerhat.rsi

@@ -1,0 +1,419 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckStrapChancellor
+  name: императорские погоны Канцлера
+  description: Погоны, предназначенные для высшего командования Подразделения.
+  components:
+  - type: Sprite
+    sprite: _CIN/Clothing/straps.rsi
+    state: icon-I
+    color: "#008080"
+  - type: Clothing
+    sprite: _CIN/Clothing/straps.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-INNERCLOTHING-I
+        color: "#008080"
+  - type: Tag
+    tags:
+    - Medal
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckStrapViceChancellor
+  name: императорские погоны Вице-Канцлера
+  description: Погоны, предназначенные для высшего командования Подразделения.
+  components:
+  - type: Sprite
+    sprite: _CIN/Clothing/straps.rsi
+    state: icon-II
+    color: "#009990"
+  - type: Clothing
+    sprite: _CIN/Clothing/straps.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-INNERCLOTHING-II
+        color: "#009990"
+  - type: Tag
+    tags:
+    - Medal
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckStrapGeneral
+  name: императорские погоны Генерала
+  description: Военные погоны, предназначенные для высшего командования Подразделения.
+  components:
+  - type: Sprite
+    sprite: _CIN/Clothing/straps.rsi
+    state: icon-II
+    color: "#86062D"
+  - type: Clothing
+    sprite: _CIN/Clothing/straps.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-INNERCLOTHING-II
+        color: "#86062D"
+  - type: Tag
+    tags:
+    - Medal
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckStrapAdmiral
+  name: императорские погоны Адмирала
+  description: Военные погоны, предназначенные для высшего командования Подразделения.
+  components:
+  - type: Sprite
+    sprite: _CIN/Clothing/straps.rsi
+    state: icon-II
+    color: "#361E72"
+  - type: Clothing
+    sprite: _CIN/Clothing/straps.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-INNERCLOTHING-II
+        color: "#361E72"
+  - type: Tag
+    tags:
+    - Medal
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckStrapMajor
+  name: офицерские погоны Майора
+  description: Военные погоны, предназначенные для командования инфантерии Подразделения.
+  components:
+  - type: Sprite
+    sprite: _CIN/Clothing/straps.rsi
+    state: icon-III
+    color: "#B23F31"
+  - type: Clothing
+    sprite: _CIN/Clothing/straps.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-INNERCLOTHING-III
+        color: "#B23F31"
+  - type: Tag
+    tags:
+    - Medal
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckStrapRittmeister
+  name: офицерские погоны Ротмистра
+  description: Военные погоны, предназначенные для командования артилерии Подразделения.
+  components:
+  - type: Sprite
+    sprite: _CIN/Clothing/straps.rsi
+    state: icon-III
+    color: "#A41334"
+  - type: Clothing
+    sprite: _CIN/Clothing/straps.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-INNERCLOTHING-III
+        color: "#A41334"
+  - type: Tag
+    tags:
+    - Medal
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckStrapEsaul
+  name: офицерские погоны Есаула
+  description: Военные погоны, предназначенные для командования авиации Подразделения.
+  components:
+  - type: Sprite
+    sprite: _CIN/Clothing/straps.rsi
+    state: icon-III
+    color: "#6B2384"
+  - type: Clothing
+    sprite: _CIN/Clothing/straps.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-INNERCLOTHING-III
+        color: "#6B2384"
+  - type: Tag
+    tags:
+    - Medal
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckStrapCaptain
+  name: офицерские погоны Капитана
+  description: Военные погоны, предназначенные для командования флота Подразделения.
+  components:
+  - type: Sprite
+    sprite: _CIN/Clothing/straps.rsi
+    state: icon-III
+    color: "#3D3D96"
+  - type: Clothing
+    sprite: _CIN/Clothing/straps.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-INNERCLOTHING-III
+        color: "#3D3D96"
+  - type: Tag
+    tags:
+    - Medal
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckStrapPorucznik
+  name: погоны Поручика
+  description: Военные погоны, предназначенные для офицеров инфантерии Подразделения.
+  components:
+  - type: Sprite
+    sprite: _CIN/Clothing/straps.rsi
+    state: icon-IV
+    color: "#D77131"
+  - type: Clothing
+    sprite: _CIN/Clothing/straps.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-INNERCLOTHING-IV
+        color: "#D77131"
+  - type: Tag
+    tags:
+    - Medal
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckStrapStabsRittmeister
+  name: погоны Штабс-Ротмистера
+  description: Военные погоны, предназначенные для офицеров артиллерии Подразделения.
+  components:
+  - type: Sprite
+    sprite: _CIN/Clothing/straps.rsi
+    state: icon-IV
+    color: "#C2213A"
+  - type: Clothing
+    sprite: _CIN/Clothing/straps.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-INNERCLOTHING-IV
+        color: "#C2213A"
+  - type: Tag
+    tags:
+    - Medal
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckStrapStabsCenturion
+  name: погоны Сотника
+  description: Военные погоны, предназначенные для офицеров авиации Подразделения.
+  components:
+  - type: Sprite
+    sprite: _CIN/Clothing/straps.rsi
+    state: icon-IV
+    color: "#9F278F"
+  - type: Clothing
+    sprite: _CIN/Clothing/straps.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-INNERCLOTHING-IV
+        color: "#9F278F"
+  - type: Tag
+    tags:
+    - Medal
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckStrapStabsLieutenant
+  name: погоны Лейтенанта
+  description: Военные погоны, предназначенные для офицеров флота Подразделения.
+  components:
+  - type: Sprite
+    sprite: _CIN/Clothing/straps.rsi
+    state: icon-IV
+    color: "#3F5CBB"
+  - type: Clothing
+    sprite: _CIN/Clothing/straps.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-INNERCLOTHING-IV
+        color: "#3F5CBB"
+  - type: Tag
+    tags:
+    - Medal
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckStrapStabsEnsign
+  name: петлицы Прапорщика
+  description: Военные петлицы, предназначенные для младших офицеров инфантерии Подразделения.
+  components:
+  - type: Sprite
+    sprite: _CIN/Clothing/straps.rsi
+    state: icon-V
+    color: "#F1A732"
+  - type: Clothing
+    sprite: _CIN/Clothing/straps.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-INNERCLOTHING-V
+        color: "#F1A732"
+  - type: Tag
+    tags:
+    - Medal
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckStrapStabsCornet
+  name: петлицы Корнета
+  description: Военные петлицы, предназначенные для младших офицеров артиллерии Подразделения.
+  components:
+  - type: Sprite
+    sprite: _CIN/Clothing/straps.rsi
+    state: icon-V
+    color: "#E1303E"
+  - type: Clothing
+    sprite: _CIN/Clothing/straps.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-INNERCLOTHING-V
+        color: "#E1303E"
+  - type: Tag
+    tags:
+    - Medal
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckStrapStabsChorozy
+  name: петлицы Хорунжия
+  description: Военные петлицы, предназначенные для младших офицеров авиации Подразделения.
+  components:
+  - type: Sprite
+    sprite: _CIN/Clothing/straps.rsi
+    state: icon-V
+    color: "#D12F93"
+  - type: Clothing
+    sprite: _CIN/Clothing/straps.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-INNERCLOTHING-V
+        color: "#D12F93"
+  - type: Tag
+    tags:
+    - Medal
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckStrapStabsMidshipman
+  name: петлицы Мичмана
+  description: Военные петлицы, предназначенные для младших офицеров флота Подразделения.
+  components:
+  - type: Sprite
+    sprite: _CIN/Clothing/straps.rsi
+    state: icon-V
+    color: "#3B7CDE"
+  - type: Clothing
+    sprite: _CIN/Clothing/straps.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-INNERCLOTHING-V
+        color: "#3B7CDE"
+  - type: Tag
+    tags:
+    - Medal
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckStrapStabsPrivate
+  name: жетон Рядового
+  description: Отличительный знак, предназначенный для инфантерии Подразделения.
+  components:
+  - type: Sprite
+    sprite: _CIN/Clothing/straps.rsi
+    state: icon-VI
+    color: "#FFE040"
+  - type: Clothing
+    sprite: _CIN/Clothing/straps.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-INNERCLOTHING-VI
+        color: "#FFE040"
+  - type: Tag
+    tags:
+    - Medal
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckStrapStabsGunner
+  name: жетон Канонира
+  description: Отличительный знак, предназначенный для артиллерии Подразделения.
+  components:
+  - type: Sprite
+    sprite: _CIN/Clothing/straps.rsi
+    state: icon-VI
+    color: "#FF4040"
+  - type: Clothing
+    sprite: _CIN/Clothing/straps.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-INNERCLOTHING-VI
+        color: "#FF4040"
+  - type: Tag
+    tags:
+    - Medal
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckStrapStabsDragoon
+  name: жетон Драгуна
+  description: Отличительный знак, предназначенный для авиации Подразделения.
+  components:
+  - type: Sprite
+    sprite: _CIN/Clothing/straps.rsi
+    state: icon-VI
+    color: "#FF4090"
+  - type: Clothing
+    sprite: _CIN/Clothing/straps.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-INNERCLOTHING-VI
+        color: "#FF4090"
+  - type: Tag
+    tags:
+    - Medal
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckStrapStabsSailor
+  name: жетон Матроса
+  description: Отличительный знак, предназначенный для флота Подразделения.
+  components:
+  - type: Sprite
+    sprite: _CIN/Clothing/straps.rsi
+    state: icon-VI
+    color: "#329DFF"
+  - type: Clothing
+    sprite: _CIN/Clothing/straps.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-INNERCLOTHING-VI
+        color: "#329DFF"
+  - type: Tag
+    tags:
+    - Medal
+    - WhitelistChameleon

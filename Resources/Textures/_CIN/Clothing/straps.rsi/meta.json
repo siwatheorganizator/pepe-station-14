@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "made by siwathecat (discord) for hyacinthus station",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon-I"
+    },
+    {
+      "name": "icon-II"
+    },
+    {
+      "name": "icon-III"
+    },
+    {
+      "name": "icon-IV"
+    },
+    {
+      "name": "icon-V"
+    },
+    {
+      "name": "icon-VI"
+    },
+    {
+      "name": "equipped-INNERCLOTHING-I",
+      "directions": 4
+    },
+    {
+      "name": "equipped-INNERCLOTHING-II",
+      "directions": 4
+    },
+    {
+      "name": "equipped-INNERCLOTHING-III",
+      "directions": 4
+    },
+    {
+      "name": "equipped-INNERCLOTHING-IV",
+      "directions": 4
+    },
+    {
+      "name": "equipped-INNERCLOTHING-V",
+      "directions": 4
+    },
+    {
+      "name": "equipped-INNERCLOTHING-VI",
+      "directions": 4
+    }
+  ]
+}
