@@ -15,4 +15,10 @@
             prefixCreator: '14'
         - type: StationJobs
           availableJobs:
+            Chancellor: [ 1, 1 ]
+            ViceChancellor: [ 1, 1 ]
+            Advisor: [ 2, 2 ]
+            Secretary: [ 2, 2 ]
+            Registrar: [ 3, 3 ]
+            Citizen: [ -1, -1 ]
             Passenger: [ -1, -1 ]

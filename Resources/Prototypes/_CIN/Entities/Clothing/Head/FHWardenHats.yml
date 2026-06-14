@@ -1,6 +1,6 @@
 - type: entity
   parent: ClothingHeadBase
-  id: ClothingHeadHatPwgoodHat
+  id: ClothingHeadHatOfficerHat
   name: офицерская фуражка
   description: Офицерский головной убор Варденов.
   components:

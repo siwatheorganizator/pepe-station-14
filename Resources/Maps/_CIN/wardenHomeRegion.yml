@@ -1233,6 +1233,83 @@ entities:
     - type: Transform
       pos: 52.5,-13.5
       parent: 2
+- proto: SpawnPointChancellor
+  entities:
+  - uid: 528
+    components:
+    - type: Transform
+      pos: 50.5,-15.5
+      parent: 2
+- proto: SpawnPointViceChancellor
+  entities:
+  - uid: 529
+    components:
+    - type: Transform
+      pos: 52.5,-15.5
+      parent: 2
+- proto: SpawnPointAdvisor
+  entities:
+  - uid: 530
+    components:
+    - type: Transform
+      pos: 54.5,-15.5
+      parent: 2
+  - uid: 531
+    components:
+    - type: Transform
+      pos: 54.5,-13.5
+      parent: 2
+- proto: SpawnPointSecretary
+  entities:
+  - uid: 532
+    components:
+    - type: Transform
+      pos: 54.5,-11.5
+      parent: 2
+  - uid: 533
+    components:
+    - type: Transform
+      pos: 50.5,-11.5
+      parent: 2
+- proto: SpawnPointRegistrar
+  entities:
+  - uid: 534
+    components:
+    - type: Transform
+      pos: 50.5,-13.5
+      parent: 2
+  - uid: 535
+    components:
+    - type: Transform
+      pos: 52.5,-11.5
+      parent: 2
+  - uid: 536
+    components:
+    - type: Transform
+      pos: 52.5,-9.5
+      parent: 2
+- proto: SpawnPointCitizen
+  entities:
+  - uid: 537
+    components:
+    - type: Transform
+      pos: 50.5,-9.5
+      parent: 2
+  - uid: 538
+    components:
+    - type: Transform
+      pos: 54.5,-9.5
+      parent: 2
+  - uid: 539
+    components:
+    - type: Transform
+      pos: 49.5,-12.5
+      parent: 2
+  - uid: 540
+    components:
+    - type: Transform
+      pos: 55.5,-12.5
+      parent: 2
 - proto: SpeedLoaderLightRifle
   entities:
   - uid: 336

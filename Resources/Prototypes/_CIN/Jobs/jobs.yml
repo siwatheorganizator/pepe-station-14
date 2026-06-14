@@ -1,0 +1,528 @@
+- type: entity
+  id: SpawnPointChancellor
+  parent: SpawnPointJobBase
+  name: канцлер
+  components:
+  - type: SpawnPoint
+    job_id: Chancellor
+  - type: Sprite
+    layers:
+    - state: green
+    - state: qm
+
+- type: entity
+  id: SpawnPointViceChancellor
+  parent: SpawnPointJobBase
+  name: Vice-Chancellor
+  components:
+  - type: SpawnPoint
+    job_id: ViceChancellor
+  - type: Sprite
+    layers:
+    - state: green
+    - state: qm
+
+- type: entity
+  id: SpawnPointAdvisor
+  parent: SpawnPointJobBase
+  name: Advisor
+  components:
+  - type: SpawnPoint
+    job_id: Advisor
+  - type: Sprite
+    layers:
+    - state: green
+    - state: hop
+
+- type: entity
+  id: SpawnPointSecretary
+  parent: SpawnPointJobBase
+  name: Secretary
+  components:
+  - type: SpawnPoint
+    job_id: Secretary
+  - type: Sprite
+    layers:
+    - state: green
+    - state: hop
+
+- type: entity
+  id: SpawnPointRegistrar
+  parent: SpawnPointJobBase
+  name: Registrar
+  components:
+  - type: SpawnPoint
+    job_id: Registrar
+  - type: Sprite
+    layers:
+    - state: green
+    - state: hop
+
+- type: entity
+  id: SpawnPointCitizen
+  parent: SpawnPointJobBase
+  name: Citizen
+  components:
+  - type: SpawnPoint
+    job_id: Citizen
+  - type: Sprite
+    layers:
+    - state: green
+    - state: passenger
+
+- type: job
+  id: Chancellor
+  name: Канцлер
+  description: Глава подразделения. Представитель ВЫСШЕЙ власти.
+  playTimeTracker: JobChancellor
+  weight: 10
+  startingGear: ChancellorGear
+  icon: "JobIconQuarterMaster"
+  supervisors: никто
+  canBeAntag: false
+  whitelisted: true
+  access:
+  - Cargo
+  - Salvage
+  - Quartermaster
+  - Maintenance
+  - External
+  - Command
+  - Brig
+  - Cryogenics
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+    - type: CommandStaff
+
+- type: job
+  id: ViceChancellor
+  name: Vice-Chancellor
+  description: Deputy head of the Hyacinthus division.
+  playTimeTracker: JobViceChancellor
+  weight: 9
+  startingGear: ChancellorGear
+  icon: "JobIconCaptain"
+  supervisors: Chancellor
+  canBeAntag: false
+  whitelisted: true
+  access:
+  - Cargo
+  - Salvage
+  - Quartermaster
+  - Maintenance
+  - External
+  - Command
+  - Brig
+  - Cryogenics
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+    - type: CommandStaff
+
+- type: job
+  id: Advisor
+  name: Advisor
+  description: Senior advisor of the Hyacinthus division.
+  playTimeTracker: JobAdvisor
+  weight: 8
+  startingGear: HoPGear
+  icon: "JobIconHeadOfPersonnel"
+  supervisors: Vice-Chancellor
+  canBeAntag: false
+  whitelisted: true
+  access:
+  - Cargo
+  - Salvage
+  - Maintenance
+  - External
+  - Command
+  - Cryogenics
+
+- type: job
+  id: Secretary
+  name: Secretary
+  description: Administrative secretary of the Hyacinthus division.
+  playTimeTracker: JobSecretary
+  weight: 7
+  startingGear: HoPGear
+  icon: "JobIconHeadOfPersonnel"
+  supervisors: Advisor
+  canBeAntag: false
+  whitelisted: true
+  access:
+  - Cargo
+  - Maintenance
+  - External
+  - Command
+  - Cryogenics
+
+- type: job
+  id: Registrar
+  name: Registrar
+  description: Registrar of the Hyacinthus division.
+  playTimeTracker: JobRegistrar
+  weight: 6
+  startingGear: PassengerGear
+  icon: "JobIconHeadOfPersonnel"
+  supervisors: Secretary
+  canBeAntag: false
+  whitelisted: true
+  access:
+  - Cargo
+  - Maintenance
+  - External
+  - Cryogenics
+
+- type: job
+  id: Citizen
+  name: Citizen
+  description: Citizen of the Hyacinthus division.
+  playTimeTracker: JobCitizen
+  weight: 1
+  startingGear: PassengerGear
+  icon: "JobIconPassenger"
+  supervisors: job-supervisors-everyone
+  canBeAntag: false
+  whitelisted: true
+  access:
+  - Maintenance
+
+- type: startingGear
+  id: ChancellorGear
+  equipment:
+    id: QuartermasterPDA
+    ears: ClothingHeadsetQM
+    belt: BoxFolderClipboardThreePapers
+    pocket1: AppraisalTool
+  storage:
+    back:
+    - Flash
+
+- type: playTimeTracker
+  id: JobChancellor
+
+- type: playTimeTracker
+  id: JobViceChancellor
+
+- type: playTimeTracker
+  id: JobAdvisor
+
+- type: playTimeTracker
+  id: JobSecretary
+
+- type: playTimeTracker
+  id: JobRegistrar
+
+- type: playTimeTracker
+  id: JobCitizen
+
+- type: roleLoadout
+  id: JobChancellor
+  groups:
+  - GroupTankHarness
+  - OfficerHead
+  - OfficerJumpsuit
+  - ChancellorStraps
+  - Glasses
+  - Survival
+  - Trinkets
+  - QuartermasterShoes
+  - GroupSpeciesBreathTool
+
+- type: roleLoadout
+  id: JobViceChancellor
+  groups:
+  - GroupTankHarness
+  - OfficerHead
+  - OfficerJumpsuit
+  - ViceChancellorStraps
+  - Glasses
+  - Survival
+  - Trinkets
+  - QuartermasterShoes
+  - GroupSpeciesBreathTool
+
+- type: roleLoadout
+  id: JobAdvisor
+  groups:
+  - GroupTankHarness
+  - OfficerHead
+  - OfficerJumpsuit
+  - AdvisorStraps
+  - Glasses
+  - Survival
+  - Trinkets
+  - QuartermasterShoes
+  - GroupSpeciesBreathTool
+
+- type: roleLoadout
+  id: JobSecretary
+  groups:
+  - GroupTankHarness
+  - OfficerHead
+  - OfficerJumpsuit
+  - SecretaryStraps
+  - Glasses
+  - Survival
+  - Trinkets
+  - QuartermasterShoes
+  - GroupSpeciesBreathTool
+
+- type: roleLoadout
+  id: JobRegistrar
+  groups:
+  - GroupTankHarness
+  - OfficerHead
+  - WardenHomeJumpsuit
+  - RegistrarStraps
+  - Glasses
+  - Survival
+  - Trinkets
+  - QuartermasterShoes
+  - GroupSpeciesBreathTool
+
+- type: roleLoadout
+  id: JobCitizen
+  groups:
+  - GroupTankHarness
+  - OfficerHead
+  - WardenHomeJumpsuit
+  - CitizenStraps
+  - Glasses
+  - Survival
+  - Trinkets
+  - QuartermasterShoes
+  - GroupSpeciesBreathTool
+
+# Jumpsuit
+- type: loadoutGroup
+  id: OfficerJumpsuit
+  name: офицерская одежда
+  loadouts:
+  - OfficerJumpsuit
+
+- type: loadout
+  id: OfficerJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitWHWardenOfficer
+
+- type: loadoutGroup
+  id: WardenHomeJumpsuit
+  name: warden home uniform
+  loadouts:
+  - WardenHomeJumpsuit
+
+- type: loadout
+  id: WardenHomeJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitWHWarden
+
+# Hat
+- type: loadoutGroup
+  id: OfficerHead
+  name: офицерский головной убор
+  loadouts:
+  - OfficerHead
+
+- type: loadout
+  id: OfficerHead
+  equipment:
+    head: ClothingHeadHatOfficerHat
+
+# Straps
+- type: loadoutGroup
+  id: ChancellorStraps
+  name: звания 1-го ранга
+  loadouts:
+  - ChancellorStrap
+  - GeneralStrap
+  - AdmiralStrap
+
+- type: loadout
+  id: ChancellorStrap
+  dummyEntity: ClothingNeckStrapChancellor
+  equipment:
+    neck: ClothingNeckStrapChancellor
+
+- type: loadout
+  id: GeneralStrap
+  dummyEntity: ClothingNeckStrapGeneral
+  equipment:
+    neck: ClothingNeckStrapGeneral
+
+- type: loadout
+  id: AdmiralStrap
+  dummyEntity: ClothingNeckStrapAdmiral
+  equipment:
+    neck: ClothingNeckStrapAdmiral
+
+- type: loadoutGroup
+  id: ViceChancellorStraps
+  name: vice-chancellor epaulettes
+  loadouts:
+  - ViceChancellorGeneralStrap
+  - ViceChancellorAdmiralStrap
+
+- type: loadout
+  id: ViceChancellorGeneralStrap
+  dummyEntity: ClothingNeckStrapGeneral
+  equipment:
+    neck: ClothingNeckStrapGeneral
+
+- type: loadout
+  id: ViceChancellorAdmiralStrap
+  dummyEntity: ClothingNeckStrapAdmiral
+  equipment:
+    neck: ClothingNeckStrapAdmiral
+
+- type: loadoutGroup
+  id: AdvisorStraps
+  name: advisor epaulettes
+  loadouts:
+  - AdvisorMajorStrap
+  - AdvisorRittmeisterStrap
+  - AdvisorEsaulStrap
+  - AdvisorCaptainStrap
+
+- type: loadout
+  id: AdvisorMajorStrap
+  dummyEntity: ClothingNeckStrapMajor
+  equipment:
+    neck: ClothingNeckStrapMajor
+
+- type: loadout
+  id: AdvisorRittmeisterStrap
+  dummyEntity: ClothingNeckStrapRittmeister
+  equipment:
+    neck: ClothingNeckStrapRittmeister
+
+- type: loadout
+  id: AdvisorEsaulStrap
+  dummyEntity: ClothingNeckStrapEsaul
+  equipment:
+    neck: ClothingNeckStrapEsaul
+
+- type: loadout
+  id: AdvisorCaptainStrap
+  dummyEntity: ClothingNeckStrapCaptain
+  equipment:
+    neck: ClothingNeckStrapCaptain
+
+- type: loadoutGroup
+  id: SecretaryStraps
+  name: secretary epaulettes
+  loadouts:
+  - SecretaryPorucznikStrap
+  - SecretaryRittmeisterStrap
+  - SecretaryCenturionStrap
+  - SecretaryLieutenantStrap
+
+- type: loadout
+  id: SecretaryPorucznikStrap
+  dummyEntity: ClothingNeckStrapPorucznik
+  equipment:
+    neck: ClothingNeckStrapPorucznik
+
+- type: loadout
+  id: SecretaryRittmeisterStrap
+  dummyEntity: ClothingNeckStrapStabsRittmeister
+  equipment:
+    neck: ClothingNeckStrapStabsRittmeister
+
+- type: loadout
+  id: SecretaryCenturionStrap
+  dummyEntity: ClothingNeckStrapStabsCenturion
+  equipment:
+    neck: ClothingNeckStrapStabsCenturion
+
+- type: loadout
+  id: SecretaryLieutenantStrap
+  dummyEntity: ClothingNeckStrapStabsLieutenant
+  equipment:
+    neck: ClothingNeckStrapStabsLieutenant
+
+- type: loadoutGroup
+  id: RegistrarStraps
+  name: registrar epaulettes
+  loadouts:
+  - RegistrarEnsignStrap
+  - RegistrarCornetStrap
+  - RegistrarChorozyStrap
+  - RegistrarMidshipmanStrap
+
+- type: loadout
+  id: RegistrarEnsignStrap
+  dummyEntity: ClothingNeckStrapStabsEnsign
+  equipment:
+    neck: ClothingNeckStrapStabsEnsign
+
+- type: loadout
+  id: RegistrarCornetStrap
+  dummyEntity: ClothingNeckStrapStabsCornet
+  equipment:
+    neck: ClothingNeckStrapStabsCornet
+
+- type: loadout
+  id: RegistrarChorozyStrap
+  dummyEntity: ClothingNeckStrapStabsChorozy
+  equipment:
+    neck: ClothingNeckStrapStabsChorozy
+
+- type: loadout
+  id: RegistrarMidshipmanStrap
+  dummyEntity: ClothingNeckStrapStabsMidshipman
+  equipment:
+    neck: ClothingNeckStrapStabsMidshipman
+
+- type: loadoutGroup
+  id: CitizenStraps
+  name: citizen epaulettes
+  loadouts:
+  - CitizenPrivateStrap
+  - CitizenGunnerStrap
+  - CitizenDragoonStrap
+  - CitizenSailorStrap
+
+- type: loadout
+  id: CitizenPrivateStrap
+  dummyEntity: ClothingNeckStrapStabsPrivate
+  equipment:
+    neck: ClothingNeckStrapStabsPrivate
+
+- type: loadout
+  id: CitizenGunnerStrap
+  dummyEntity: ClothingNeckStrapStabsGunner
+  equipment:
+    neck: ClothingNeckStrapStabsGunner
+
+- type: loadout
+  id: CitizenDragoonStrap
+  dummyEntity: ClothingNeckStrapStabsDragoon
+  equipment:
+    neck: ClothingNeckStrapStabsDragoon
+
+- type: loadout
+  id: CitizenSailorStrap
+  dummyEntity: ClothingNeckStrapStabsSailor
+  equipment:
+    neck: ClothingNeckStrapStabsSailor
+
+- type: department
+  id: Hyacinthus
+  name: Подразделение "Гиацинт"
+  description: Солдаты подразделения "Гиацинт".
+  color: "#154C8C"
+  roles:
+  - Chancellor
+  - ViceChancellor
+  - Advisor
+  - Secretary
+  - Registrar
+  - Citizen
+  primary: false
+  weight: 100

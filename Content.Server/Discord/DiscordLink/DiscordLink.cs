@@ -1,5 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text.Json;
+using System.Threading;
 using Content.Shared.CCVar;
 using NetCord;
 using NetCord.Gateway;
@@ -37,11 +42,15 @@ public sealed class CommandReceivedEventArgs
     public Message Message { get; init; } = default!;
 }
 
+public sealed record DiscordGuildMemberRoles(bool IsGuildMember, IReadOnlySet<ulong> RoleIds);
+
 /// <summary>
 /// Handles the connection to Discord and provides methods to interact with it.
 /// </summary>
 public sealed class DiscordLink : IPostInjectInit
 {
+    private static readonly HttpClient Http = new();
+
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IConfigurationManager _configuration = default!;
 
@@ -52,6 +61,8 @@ public sealed class DiscordLink : IPostInjectInit
     ///     This should not be used directly outside of DiscordLink. So please do not make it public. Use the methods in this class instead.
     /// </remarks>
     private GatewayClient? _client;
+    private CancellationTokenSource? _connectionCancel;
+    private Task? _connectionTask;
     private ISawmill _sawmill = default!;
     private ISawmill _sawmillLog = default!;
 
@@ -98,6 +109,8 @@ public sealed class DiscordLink : IPostInjectInit
             return;
         }
 
+        _botToken = token;
+
         // If the Guild ID is empty OR the prefix is empty, we don't want to connect to Discord.
         if (_guildId == 0 || BotPrefix == string.Empty)
         {
@@ -108,7 +121,110 @@ public sealed class DiscordLink : IPostInjectInit
             return;
         }
 
-        _client = new GatewayClient(new BotToken(token), new GatewayClientConfiguration()
+        // Since you cannot change the token while the server is running / the DiscordLink is initialized,
+        // we can just set the token without updating it every time the cvar changes.
+        _connectionCancel = new CancellationTokenSource();
+        _connectionTask = Task.Run(() => ConnectLoop(token, _connectionCancel.Token));
+    }
+
+    public async Task Shutdown()
+    {
+        if (_connectionCancel != null)
+        {
+            await _connectionCancel.CancelAsync();
+            _connectionCancel.Dispose();
+            _connectionCancel = null;
+        }
+
+        if (_connectionTask != null)
+        {
+            try
+            {
+                await _connectionTask;
+            }
+            catch (OperationCanceledException)
+            {
+            }
+
+            _connectionTask = null;
+        }
+
+        var client = _client;
+        _client = null;
+        if (client != null)
+        {
+            _sawmill.Info("Disconnecting from Discord.");
+
+            client.MessageCreate -= OnCommandReceivedInternal;
+            client.MessageCreate -= OnMessageReceivedInternal;
+
+            await client.CloseAsync();
+            client.Dispose();
+        }
+
+        _configuration.UnsubValueChanged(CCVars.DiscordGuildId, OnGuildIdChanged);
+        _configuration.UnsubValueChanged(CCVars.DiscordPrefix, OnPrefixChanged);
+    }
+
+    private async Task ConnectLoop(string token, CancellationToken cancel)
+    {
+        var retryDelay = TimeSpan.FromSeconds(10);
+
+        while (!cancel.IsCancellationRequested)
+        {
+            var client = CreateClient(token);
+            _client = client;
+            var connected = false;
+
+            try
+            {
+                using var attemptCancel = CancellationTokenSource.CreateLinkedTokenSource(cancel);
+                attemptCancel.CancelAfter(TimeSpan.FromSeconds(30));
+
+                await client.StartAsync(cancellationToken: attemptCancel.Token);
+                connected = true;
+                _sawmill.Info("Connected to Discord.");
+                return;
+            }
+            catch (OperationCanceledException) when (cancel.IsCancellationRequested)
+            {
+                return;
+            }
+            catch (OperationCanceledException)
+            {
+                _sawmill.Warning("Discord connection attempt timed out. Retrying in {Delay} seconds.", retryDelay.TotalSeconds);
+            }
+            catch (Exception e)
+            {
+                _sawmill.Error("Failed to connect to Discord: {Exception}", e);
+            }
+            finally
+            {
+                if (!connected)
+                {
+                    if (ReferenceEquals(_client, client))
+                        _client = null;
+
+                    client.MessageCreate -= OnCommandReceivedInternal;
+                    client.MessageCreate -= OnMessageReceivedInternal;
+                    client.Dispose();
+                }
+            }
+
+            try
+            {
+                await Task.Delay(retryDelay, cancel);
+            }
+            catch (OperationCanceledException)
+            {
+                return;
+            }
+        }
+    }
+
+    private GatewayClient CreateClient(string token)
+    {
+        var client = new GatewayClient(new BotToken(token), new GatewayClientConfiguration()
         {
             Intents = GatewayIntents.Guilds
                              | GatewayIntents.GuildUsers
@@ -117,50 +233,16 @@ public sealed class DiscordLink : IPostInjectInit
                              | GatewayIntents.DirectMessages,
             Logger = new DiscordSawmillLogger(_sawmillLog),
         });
-        _client.MessageCreate += OnCommandReceivedInternal;
-        _client.MessageCreate += OnMessageReceivedInternal;
 
-        _botToken = token;
-        // Since you cannot change the token while the server is running / the DiscordLink is initialized,
-        // we can just set the token without updating it every time the cvar changes.
-
-        _client.Ready += _ =>
+        client.MessageCreate += OnCommandReceivedInternal;
+        client.MessageCreate += OnMessageReceivedInternal;
+        client.Ready += _ =>
         {
             _sawmill.Info("Discord client ready.");
             return default;
         };
 
-        Task.Run(async () =>
-        {
-            try
-            {
-                await _client.StartAsync();
-                _sawmill.Info("Connected to Discord.");
-            }
-            catch (Exception e)
-            {
-                _sawmill.Error("Failed to connect to Discord!", e);
-            }
-        });
-    }
-
-    public async Task Shutdown()
-    {
-        if (_client != null)
-        {
-            _sawmill.Info("Disconnecting from Discord.");
-
-            // Unsubscribe from the events.
-            _client.MessageCreate -= OnCommandReceivedInternal;
-            _client.MessageCreate -= OnMessageReceivedInternal;
-
-            await _client.CloseAsync();
-            _client.Dispose();
-            _client = null;
-        }
-
-        _configuration.UnsubValueChanged(CCVars.DiscordGuildId, OnGuildIdChanged);
-        _configuration.UnsubValueChanged(CCVars.DiscordPrefix, OnPrefixChanged);
+        return client;
     }
 
     void IPostInjectInit.PostInject()
@@ -247,6 +329,60 @@ public sealed class DiscordLink : IPostInjectInit
             AllowedMentions = AllowedMentionsProperties.None,
             Content = message,
         });
+    }
+
+    public async Task<DiscordGuildMemberRoles?> GetGuildMemberRolesAsync(ulong discordUserId, CancellationToken cancel = default)
+    {
+        if (_guildId == 0 || string.IsNullOrWhiteSpace(_botToken))
+            return null;
+
+        using var request = new HttpRequestMessage(
+            HttpMethod.Get,
+            $"https://discord.com/api/v10/guilds/{_guildId}/members/{discordUserId}");
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bot", _botToken);
+        request.Headers.UserAgent.ParseAdd("SpaceStation14-DiscordRankSync/1.0");
+
+        try
+        {
+            using var response = await Http.SendAsync(request, cancel);
+
+            if (response.StatusCode == HttpStatusCode.NotFound)
+                return new DiscordGuildMemberRoles(false, new HashSet<ulong>());
+
+            if (!response.IsSuccessStatusCode)
+            {
+                _sawmill.Error(
+                    "Discord guild member lookup for user {DiscordUserId} failed with HTTP {StatusCode}.",
+                    discordUserId,
+                    response.StatusCode);
+                return null;
+            }
+
+            await using var stream = await response.Content.ReadAsStreamAsync(cancel);
+            using var document = await JsonDocument.ParseAsync(stream, cancellationToken: cancel);
+
+            var roleIds = new HashSet<ulong>();
+            if (document.RootElement.TryGetProperty("roles", out var rolesElement))
+            {
+                foreach (var roleElement in rolesElement.EnumerateArray())
+                {
+                    var roleIdRaw = roleElement.GetString();
+                    if (ulong.TryParse(roleIdRaw, out var roleId))
+                        roleIds.Add(roleId);
+                }
+            }
+
+            return new DiscordGuildMemberRoles(true, roleIds);
+        }
+        catch (OperationCanceledException)
+        {
+            throw;
+        }
+        catch (Exception e)
+        {
+            _sawmill.Error("Discord guild member lookup for user {DiscordUserId} failed: {Exception}", discordUserId, e);
+            return null;
+        }
     }
 
     #endregion

@@ -75,6 +75,39 @@ public sealed partial class CCVars
         CVarDef.Create("discord.guild_id", string.Empty, CVar.SERVERONLY);
 
     /// <summary>
+    ///     Enables syncing configured Discord roles into SS14 job whitelists.
+    /// </summary>
+    public static readonly CVarDef<bool> DiscordRankSyncEnabled =
+        CVarDef.Create("discord.rank_sync.enabled", false, CVar.SERVERONLY);
+
+    /// <summary>
+    ///     Optional semicolon-separated fallback SS14 account links.
+    ///     Automatic linking is stored in the server user data file discord_rank_links.json.
+    ///     Format: ss14-user-guid=discord-user-id;ss14-user-guid=discord-user-id
+    /// </summary>
+    public static readonly CVarDef<string> DiscordRankSyncAccountLinks =
+        CVarDef.Create("discord.rank_sync.account_links", string.Empty, CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+    /// <summary>
+    ///     Semicolon-separated Discord role to job whitelist map.
+    ///     Format: discord-role-id=JobId,OtherJobId;discord-role-id=JobId
+    /// </summary>
+    public static readonly CVarDef<string> DiscordRankSyncRoleMap =
+        CVarDef.Create("discord.rank_sync.role_map", string.Empty, CVar.SERVERONLY);
+
+    /// <summary>
+    ///     When enabled, mapped job whitelists are removed if the linked Discord user no longer has the mapped role.
+    /// </summary>
+    public static readonly CVarDef<bool> DiscordRankSyncRemoveStale =
+        CVarDef.Create("discord.rank_sync.remove_stale", true, CVar.SERVERONLY);
+
+    /// <summary>
+    ///     How often to resync online linked players, in seconds. Set to 0 to disable periodic sync.
+    /// </summary>
+    public static readonly CVarDef<float> DiscordRankSyncInterval =
+        CVarDef.Create("discord.rank_sync.interval_seconds", 300f, CVar.SERVERONLY);
+
+    /// <summary>
     ///     Prefix used for commands for the Discord bot.
     ///     If this is empty, the bot will not connect.
     /// </summary>

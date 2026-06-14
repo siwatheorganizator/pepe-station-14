@@ -8,6 +8,7 @@ using Content.Server.Connection;
 using Content.Server.Database;
 using Content.Server.Discord;
 using Content.Server.Discord.DiscordLink;
+using Content.Server.Discord.RankSync;
 using Content.Server.Discord.WebhookMessages;
 using Content.Server.EUI;
 using Content.Server.FeedbackSystem;
@@ -82,6 +83,7 @@ internal static class ServerContentIoC
         deps.Register<CVarControlManager>();
         deps.Register<DiscordLink>();
         deps.Register<DiscordChatLink>();
+        deps.Register<DiscordRoleJobSyncManager>();
         deps.Register<ServerFeedbackManager>();
         deps.Register<ISharedFeedbackManager, ServerFeedbackManager>();
     }

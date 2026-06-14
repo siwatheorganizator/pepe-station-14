@@ -38,6 +38,16 @@ public sealed class JobWhitelistManager : IPostInjectInit
         _whitelists[session.UserId] = whitelists.ToHashSet();
     }
 
+    public async Task ReloadWhitelist(NetUserId player, CancellationToken cancel = default)
+    {
+        var whitelists = await _db.GetJobWhitelists(player, cancel);
+        cancel.ThrowIfCancellationRequested();
+        _whitelists[player] = whitelists.ToHashSet();
+
+        if (_player.TryGetSessionById(player, out var session))
+            SendJobWhitelist(session);
+    }
+
     private void FinishLoad(ICommonSession session)
     {
         SendJobWhitelist(session);
